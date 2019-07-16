@@ -5,6 +5,7 @@ const logger = require('morgan');
 const compression = require('compression');
 
 const server = express();
+const router = require('./router');
 
 server.use(express.json());
 server.use(cors());
@@ -15,5 +16,7 @@ server.use(compression());
 server.get('/', (req, res) =>
   res.status(200).json({ status: 200, message: 'Welcome, O loyal developer!' }),
 );
+
+server.use('/api/cars', router);
 
 module.exports = server;
