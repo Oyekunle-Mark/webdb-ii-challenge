@@ -6,6 +6,7 @@ const compression = require('compression');
 
 const server = express();
 const router = require('./router');
+const { badUrl } = require('./middleware');
 
 server.use(express.json());
 server.use(cors());
@@ -18,5 +19,6 @@ server.get('/', (req, res) =>
 );
 
 server.use('/api/cars', router);
+server.use(badUrl);
 
 module.exports = server;
